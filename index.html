@@ -24,37 +24,53 @@
     <div id="helpContainer">
       <div id="help">
         <div class="verticalFlex">
-<!--           <h2>Help</h2>
+          <!--           <h2>Help</h2>
           <p>
             goosegrid is a live coding audio tool that allows you to compose
             music using a grid system.
           </p> -->
+
+          <h2>Quick How To</h2>
           
-          <h2>quick how to</h2>
+          <span style="color:red;">This project is still work in progress!</span>
 
           <p>
-            With this tool you can create loops by connecting cells on a grid.
-            To chain together a group of connected notes, use the red loop
-            symbol at the very beginning of the chain. This tool does make sound
-            by itself but it's primarily meant to be a midi sequencer,
-            connecting to something like Ableton.
+            This tool lets you arrange notes using a grid system. Connected
+            notes can be grouped together into loops, by placing the "loop"
+            symbol at the start (left side) of the chain. You can play and pause
+            the playback by using three buttons in the toolbar, or you can use
+            the space bar. This tool does make sound by itself but it's
+            primarily meant to be a MIDI sequencer, connecting to something like
+            Ableton.
+          </p>
+          <p>
+            To place a note, first select a cell in the palette. Then, click
+            within the workarea. You can click and drag to adjust the duration
+            of the note while you place it.
+          </p>
+          <p>
+            You can also use the keyboard to navigate the grid system, using the
+            arrow keys to move the selection, and shift+arrow keys to select
+            more or less cells. Selection can be copied, cut, or pasted, using
+            the buttons in the toolbar or using keyboard shortcuts (ctrl-c to
+            copy, ctrl-x to cut, ctrl-v to paste).
           </p>
 
           <p>
-            Each loop can be assigned to a specific midi channel, by selecting
+            Each loop can be assigned to a specific MIDI channel, by selecting
             the keyboard icon in the toolbar. To change the number, select cells
             you'd like to change and either use ctrl-up and ctrl-down, or type
             the number.
           </p>
-
           <img
-            src="https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice1.png?v=1670906038123"
+            src="https://cdn.glitch.global/cc08a70b-e934-4d42-9186-e91a3a22fffd/slice1.png?v=1674165870980"
           />
           <p>
-            The palette is where you select notes it can be placed on the grid.
+            The palette is where you select notes that can be placed on the
+            grid.
           </p>
           <img
-            src="https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice2.png?v=1670906038530"
+            src="https://cdn.glitch.global/cc08a70b-e934-4d42-9186-e91a3a22fffd/slice3.png?v=1674165871557"
           />
           <p>
             The toolbar is where you can affect playback and a handful of tools
@@ -67,8 +83,8 @@
                 Edit allows you to select notes from the palate and place them
                 into the main grid. Left click will place a note and right click
                 will delete a note. If no notes are selected from the palette
-                then clicking and dragging will select cells. The escape key will 
-                clear whatever cell you had selected from the palette.
+                then clicking and dragging will select cells. The escape key
+                will clear whatever cell you had selected from the palette.
               </dd>
               <dt>⛶ (Select)</dt>
               <dd>
@@ -82,31 +98,38 @@
               <dt>V (Velocity)</dt>
               <dd>
                 Velocity puts the the editor into mode that allows you to change
-                the loudness of individual notes.
+                the loudness of individual notes. Use ctrl-up, ctrl-down, or
+                type a number to change the value.
               </dd>
               <dt>O (Octave)</dt>
               <dd>
                 Octave puts the editor into a mode that allows you to change the
-                octave of individual notes.
+                octave of individual notes. Use ctrl-up, ctrl-down, or type a
+                number to change the value.
               </dd>
               <dt>🎹 (MIDI Channel)</dt>
               <dd>
                 MIDI Channel allows you to change the current midi channel of
-                the given chain.
+                the given chain. Use ctrl-up, ctrl-down, or type a number to
+                change the value.
               </dd>
               <dt>🔗 (Extend Notes)</dt>
               <dd>Extend allows you to hold notes and extend duration.</dd>
               <dt>⧉ (Copy)</dt>
-              <dd>Copy will hold on to any selected cells.</dd>
+              <dd>Copy will hold on to any selected cells. (ctrl-c)</dd>
               <dt>📋 (Paste)</dt>
               <dd>
                 Paste will place any copied cells at the currently selected
-                cell.
+                cell. (ctrl-v)
               </dd>
               <dt>✂️ (Cut)</dt>
-              <dd>Cut will copy the selected cells and remove them.</dd>
+              <dd>
+                Cut will copy the selected cells and remove them. (ctrl-x)
+              </dd>
               <dt>🗑 (Delete)</dt>
-              <dd>Delete will remove the selected cells from the grid.</dd>
+              <dd>
+                Delete will remove the selected cells from the grid. (backspace)
+              </dd>
             </dl>
           </ul>
           <h2>MIDI</h2>
@@ -126,14 +149,14 @@
               >Check out this article if you have issues.</a
             >
           </p>
-          
-          <h2>
-            about
-          </h2>
+
+          <h2>About</h2>
           <p>
-            This tool was made by Austin Slominski (@aceslowman). Please let me
-            know if you run into any issues, either message me on social media
-            or file an issue on github.
+            This tool was made by Austin Slominski (<a
+              href="https://linktr.ee/aceslowman"
+              >@aceslowman</a
+            >) in 2023. Let me know if you have any issues or suggestions! This
+            is still a work in progress.
           </p>
         </div>
       </div>
@@ -172,7 +195,7 @@
             <label>bpm: </label>
             <input id="transportBPMInput" type="number" value="120" />
           </div>
-<!--           <button id="syncBPM">
+          <!--           <button id="syncBPM">
             sync
           </button> -->
         </div>

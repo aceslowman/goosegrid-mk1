@@ -1,23 +1,25 @@
 # goosegrid
 
+![interface](https://cdn.glitch.global/cc08a70b-e934-4d42-9186-e91a3a22fffd/ggridinterface%20(2).PNG?v=1674165673147)
+
 goosegrid is a sequencer that can be used to live code and compose music 
 (and other things that can be connected via MIDI). Notes are arranged along 
 a grid, the sequencer plays connected cells from left to right and plays 
 connected vertical notes as harmony.
 
-The palatte is where you select notes that can be placed onto the grid.
-Tap on any of the cells in the palatte to select, and then click within the grid
+The palette is where you select notes that can be placed onto the grid.
+Tap on any of the cells in the palette to select, and then click within the grid
 to place it. If you click and drag, you can extend notes over longer durations.
 
-![palatte](https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice1.png?v=1670906038123)
+![palette](https://cdn.glitch.global/cc08a70b-e934-4d42-9186-e91a3a22fffd/slice1.png?v=1674165870980)
 
 The toolbar is where you can affect playback and a handful of tools 
 that can change the mode that you're currently in.
 
-![toolbar](https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice2.png?v=1670906038530)
+![toolbar](https://cdn.glitch.global/cc08a70b-e934-4d42-9186-e91a3a22fffd/slice3.png?v=1674165871557)
 
 #### ✏ (Edit)
-- Edit allows you to select notes from the palate and place them into the main grid. Left click will place a note and right click will delete a note. If no notes are selected from the palatte then clicking and dragging will select cells.
+- Edit allows you to select notes from the palate and place them into the main grid. Left click will place a note and right click will delete a note. If no notes are selected from the palette then clicking and dragging will select cells.
 #### ⛶ (Select)
 - Select allows you to click and drag regions for selection.
 #### 🖑 (Pan)
