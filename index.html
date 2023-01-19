@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <script type="module" src="sketch.js"></script>
+    <title>goosegrid</title>
+  </head>
+  <body>
+    <main></main>
+
+    <div id="workAreaContainer"></div>
+    <div class="floatingPanel" id="palette">
+      <div class="dragHandle">✥</div>
+      <h2>palette</h2>
+    </div>
+
+    <div id="helpContainer">
+      <div id="help">
+        <div class="verticalFlex">
+<!--           <h2>Help</h2>
+          <p>
+            goosegrid is a live coding audio tool that allows you to compose
+            music using a grid system.
+          </p> -->
+          
+          <h2>quick how to</h2>
+
+          <p>
+            With this tool you can create loops by connecting cells on a grid.
+            To chain together a group of connected notes, use the red loop
+            symbol at the very beginning of the chain. This tool does make sound
+            by itself but it's primarily meant to be a midi sequencer,
+            connecting to something like Ableton.
+          </p>
+
+          <p>
+            Each loop can be assigned to a specific midi channel, by selecting
+            the keyboard icon in the toolbar. To change the number, select cells
+            you'd like to change and either use ctrl-up and ctrl-down, or type
+            the number.
+          </p>
+
+          <img
+            src="https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice1.png?v=1670906038123"
+          />
+          <p>
+            The palette is where you select notes it can be placed on the grid.
+          </p>
+          <img
+            src="https://cdn.glitch.global/2e194b33-799a-4322-a267-3de86eb8fd0c/slice2.png?v=1670906038530"
+          />
+          <p>
+            The toolbar is where you can affect playback and a handful of tools
+            that can change the mode that you're currently in.
+          </p>
+          <ul>
+            <dl>
+              <dt>✏ (Edit)</dt>
+              <dd>
+                Edit allows you to select notes from the palate and place them
+                into the main grid. Left click will place a note and right click
+                will delete a note. If no notes are selected from the palette
+                then clicking and dragging will select cells. The escape key will 
+                clear whatever cell you had selected from the palette.
+              </dd>
+              <dt>⛶ (Select)</dt>
+              <dd>
+                Select allows you to click and drag regions for selection.
+              </dd>
+              <dt>🖑 (Pan)</dt>
+              <dd>
+                Pan moves the main grid. Also achieved by the middle mouse
+                button, or two finger drag with touch devices.
+              </dd>
+              <dt>V (Velocity)</dt>
+              <dd>
+                Velocity puts the the editor into mode that allows you to change
+                the loudness of individual notes.
+              </dd>
+              <dt>O (Octave)</dt>
+              <dd>
+                Octave puts the editor into a mode that allows you to change the
+                octave of individual notes.
+              </dd>
+              <dt>🎹 (MIDI Channel)</dt>
+              <dd>
+                MIDI Channel allows you to change the current midi channel of
+                the given chain.
+              </dd>
+              <dt>🔗 (Extend Notes)</dt>
+              <dd>Extend allows you to hold notes and extend duration.</dd>
+              <dt>⧉ (Copy)</dt>
+              <dd>Copy will hold on to any selected cells.</dd>
+              <dt>📋 (Paste)</dt>
+              <dd>
+                Paste will place any copied cells at the currently selected
+                cell.
+              </dd>
+              <dt>✂️ (Cut)</dt>
+              <dd>Cut will copy the selected cells and remove them.</dd>
+              <dt>🗑 (Delete)</dt>
+              <dd>Delete will remove the selected cells from the grid.</dd>
+            </dl>
+          </ul>
+          <h2>MIDI</h2>
+          <p>
+            To use WebMIDI you will likely want to be on Chrome, and you will
+            need to have some sort of virtual MIDI loopback. On Windows check
+            out
+            <a href="https://www.tobias-erichsen.de/software/loopmidi.html"
+              >Tobias Erichsen's loopMIDI</a
+            >
+
+            On MacOS you can use the built in IAC bus, which has to be enabled
+            in Audio MIDI Setup.
+
+            <a
+              href="https://help.ableton.com/hc/en-us/articles/209774225-Setting-up-a-virtual-MIDI-bus"
+              >Check out this article if you have issues.</a
+            >
+          </p>
+          
+          <h2>
+            about
+          </h2>
+          <p>
+            This tool was made by Austin Slominski (@aceslowman). Please let me
+            know if you run into any issues, either message me on social media
+            or file an issue on github.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="settingsContainer">
+      <div id="settings">
+        <h2>Settings</h2>
+        <p>goosegrid</p>
+        <fieldset>
+          <legend>MIDI Settings</legend>
+          <label for="MIDIOutputSelect">MIDI Output Device</label>
+          <select id="MIDIOutputSelect" name="MIDIOutputSelect"></select>
+        </fieldset>
+        <fieldset>
+          <legend>Appearance</legend>
+          <label for="CellSizeInput">Cell Size</label>
+          <input id="CellSizeInput" type="number" step="1" />
+        </fieldset>
+      </div>
+    </div>
+    <div id="info">
+      <div id="transport">
+        <div id="transportControls">
+          <div style="border-right: 1px solid gray">
+            <button id="transportPlayButton" class="squareButton">
+              <img src="icons/Play.webp" alt="the icon representing Play" />
+            </button>
+            <button id="transportStopButton" class="squareButton">
+              <img src="icons/Stop.webp" alt="the icon representing stop" />
+            </button>
+          </div>
+          <!--           <div>
+            <span id="transportPosition">1.1.1</span>
+          </div> -->
+          <div id="transportBPM">
+            <label>bpm: </label>
+            <input id="transportBPMInput" type="number" value="120" />
+          </div>
+<!--           <button id="syncBPM">
+            sync
+          </button> -->
+        </div>
+      </div>
+      <div class="toolSeparator"></div>
+      <div id="toolbarControls">
+        <button title="edit" id="toolbarEditButton" class="squareButton">
+          <img src="icons/Edit.webp" alt="the icon representing " />
+        </button>
+        <button title="select" id="toolbarSelectButton" class="squareButton">
+          <!--           ⛶ -->
+          <img src="icons/Select.webp" alt="the icon representing select" />
+        </button>
+        <button title="pan" id="toolbarPanButton" class="squareButton">
+          <img src="icons/Pan.webp" alt="the icon representing " />
+        </button>
+        <button
+          title="velocity"
+          id="toolbarVelocityButton"
+          class="squareButton"
+        >
+          <img src="icons/Velocity.webp" alt="the icon representing velocity" />
+        </button>
+        <button title="octave" id="toolbarOctaveButton" class="squareButton">
+          <img src="icons/Octave.webp" alt="the icon representing octave" />
+        </button>
+        <button
+          title="midi channel"
+          id="toolbarMIDIChannelButton"
+          class="squareButton"
+        >
+          <img src="icons/MIDI.webp" alt="the icon representing " />
+        </button>
+        <button title="extend" id="toolbarExtendButton" class="squareButton">
+          <img src="icons/Extend.webp" alt="the icon representing " />
+        </button>
+        <button
+          title="delete (backspace)"
+          id="toolbarDeleteButton"
+          class="squareButton"
+        >
+          <!--           🗑 -->
+          <img src="icons/Remove.webp" alt="the icon representing remove" />
+        </button>
+        <div class="toolSeparator"></div>
+        <button
+          title="copy (ctrl-c)"
+          id="toolbarCopyButton"
+          class="squareButton"
+        >
+          <!--           ⧉ -->
+          <img src="icons/Copy.webp" alt="the icon representing copy" />
+        </button>
+        <button
+          title="paste (ctrl-v)"
+          id="toolbarPasteButton"
+          class="squareButton"
+        >
+          <!--           📋 -->
+          <img src="icons/Paste.webp" alt="the icon representing paste" />
+        </button>
+        <button title="cut (ctrl-x)" id="toolbarCutButton" class="squareButton">
+          <!--           ✂️ -->
+          <img src="icons/Cut.webp" alt="the icon representing cut" />
+        </button>
+        <div class="toolSeparator"></div>
+      </div>
+      <div id="toggleMute" title="toggle mute">
+        <button class="squareButton">
+          <img src="icons/Unmuted.webp" alt="the icon representing Muted" />
+        </button>
+      </div>
+      <div id="toggleHelp" title="toggle help">
+        <button class="squareButton">
+          <img src="icons/Help.webp" alt="the icon representing help" />
+        </button>
+      </div>
+      <div id="toggleSettings" title="toggle settings">
+        <button class="squareButton">
+          <img src="icons/Settings.webp" alt="the icon representing settings" />
+        </button>
+      </div>
+      <div id="saveFile" title="save file">
+        <button class="squareButton">
+          <img src="icons/Save.webp" alt="the icon representing save" />
+        </button>
+      </div>
+      <div id="loadFile" title="load file">
+        <button class="squareButton">
+          <img src="icons/Load.webp" alt="the icon representing load" />
+        </button>
+      </div>
+    </div>
+    <div class="loading">
+      <h1>goosegrid</h1>
+      <em><small>loading...</small></em>
+      <div class="spin"></div>
+    </div>
+    <!--     <h1>goosegrid</h1> -->
+  </body>
+</html>
